@@ -1,0 +1,13 @@
+ True, 0,  nan,       Good,  T
+False, 1,  1.0,        Bad,  F
+ True, 2,  2.0,       Ugly,  T
+
+False, 3,  infinity, Good,  F
+ True, 4,  4.0,       Bad,  T
+False, 5,  5.0,      Ugly,  F
+
+
+False, 6, -infinity, Good,  T
+False, 7,  7.0,       Bad,  F
+False, 8,  8.0,      Ugly,  T
+
