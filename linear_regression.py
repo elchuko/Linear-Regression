@@ -21,8 +21,9 @@ def createMatrixes(filename):
 
 def matrixMultiplier(A, BT):
 	print(len(A))
-	print(len(BT[0]))
+	print(len(BT))
 	if(type(BT[0]) is not list):
+		print("si entro aqui")
 		if(len(A) != len(BT)):
 			print("las matrices no se pueden multiplicar")
 			return 0
@@ -44,6 +45,7 @@ def matrixMultiplier(A, BT):
 if __name__ == "__main__":
 	A, AT, resultVector = createMatrixes("airfoil_train_.csv")
 	resultMatrix = matrixMultiplier(A,AT)
+	print(len(resultVector))
 	finalVector = matrixMultiplier(AT, resultVector)
 
 
