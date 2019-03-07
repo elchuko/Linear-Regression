@@ -70,7 +70,10 @@ def splitMatrix(matrix):
 	return resultVector
 
 def calculateRMSE(matrix,yVector,values):
-	pass
+	resultV = []
+	for height in range(len(matrix)):
+		for width in range(len(matrix[0])):
+			resultV[height] += matrix[height][width]*values[width]
 	
 
 if __name__ == "__main__":
