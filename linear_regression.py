@@ -11,6 +11,7 @@ def createMatrixes(filename):
 
 	for currentLine in range(len(lines)):
 		temporary = lines[currentLine].split()
+		#resultVector.append(temporary[len(temporary)-1])
 		resultVector.append(temporary.pop())
 		matrixA[currentLine] = temporary
 		for x in range(5):
@@ -18,6 +19,18 @@ def createMatrixes(filename):
 
 	
 	return matrixA, matrixAT, resultVector
+
+def addRowOfOnes(matrix):
+	row = [1 for i in range(len(matrix[0]))]
+	matrix.insert(0, row)
+	return matrix;
+	
+
+def addColumnOfOnes(matrix):
+	for i in range(len(matrix)):
+		matrix[i].insert(0,1)
+
+	return matrix;
 
 
 def matrixMultiplier(A, BT):
@@ -55,15 +68,20 @@ def splitMatrix(matrix):
 		resultVector.append(matrix[i].pop())
 
 	return resultVector
+
+def calculateRMSE(resultVector):
+	pass
 	
 
 if __name__ == "__main__":
 	A, AT, resultVector = createMatrixes("airfoil_train_.csv")
-	resultMatrix = matrixMultiplier(A,AT)
-	print(resultMatrix)
-	finalVector = matrixMultiplier(AT, resultVector)
-	print(finalVector)
-	print(splitMatrix(gj.gauss_jordan(joinMatrixes(resultMatrix,finalVector))))
+	A1 = addColumnOfOnes(A)
+	AT1 = addRowOfOnes(AT)
+	resultMatrix = matrixMultiplier(A1,AT1)
+	finalVector = matrixMultiplier(AT1, resultVector)
+	values = splitMatrix(gj.gauss_jordan(joinMatrixes(resultMatrix,finalVector)))
+	print(values)
+
 
 	
 	

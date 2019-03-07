@@ -2,52 +2,6 @@ dimx = 0
 dimy = 0
 mini = 0
 
-
-def error_test2(x):
-    try:
-        int(x)
-        return False
-    except:
-        return True
-
-
-def error_test3(x):
-    try:
-        float(x)
-        return False
-    except:
-        return True
-
-# Revision general
-def error_test(y, z=1):
-    if z == 1:
-        while error_test2(y):
-            print("\n\n\t\tERROR!!!\n\t\tSe han ingresado valores o caracteres no validos.")
-        return int(y)
-    elif z == 2:
-        while error_test3(y):
-            print ("\n\n\t\tERROR!!!\n\t\tSe han ingresado valores o caracteres no validos.")
-        return float(y)
-
-def generador(y,x):
-    mat = []
-    for k in range(y):
-        mat.append([])
-    for i in range(y):
-        for j in range(x):
-            print
-            mat[i].append(error_test(raw_input("a_" + str(i+1) + str(j+1) + " = "), 2))
-    return mat
-
-def impri(m):
-    print("\n")
-    print("\t||" + ("\t" * (len(m[0]) + 1)) + "||")
-    for i in range(len(m)):
-        print("\t||\t"),
-        print("||")
-        print("\t||" + ("\t" * (len(m[0]) + 1)) + "||")
-    print("\n")
-
 def peque(a,b):
     if a > b:
         return b
@@ -70,16 +24,14 @@ def multi(l1, k):
 
 def swap_finder(m, l, x):
     if l == (x-1):
-        print("La matriz es una matriz singular.")
-        print("Eso implica que no se puede resolver.\n\n")
+        print("creo que no funciona")
         return m, False
     else:
         for i in range(l, x):
             if m[i][l] != 0:
                 m[l], m[i] = m[i], m[l]
                 return m, True
-        print("La matriz es una matriz singular.")
-        print("Eso implica que no se puede resolver.\n\n")
+        print("creo que tampoco funciona")
         return m, False
 
 def solver(m,p):
