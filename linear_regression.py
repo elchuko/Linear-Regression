@@ -1,4 +1,5 @@
 import csv
+import gauss_jordan as gj
 
 def createMatrixes(filename):
 	airfoil_file = open(filename, 'r')
@@ -44,19 +45,26 @@ def matrixMultiplier(A, BT):
 	return resultMatrix
 
 def joinMatrixes(matrix, result):
-	pass
-	
+	for i in range(len(matrix)):
+		matrix[i].append(result[i])
+	return matrix
 
-def gaussJordan(matrix):
-	pass
+def splitMatrix(matrix):
+	resultVector = []
+	for i in range(len(matrix)):
+		resultVector.append(matrix[i].pop())
 
-
+	return resultVector
 	
 
 if __name__ == "__main__":
 	A, AT, resultVector = createMatrixes("airfoil_train_.csv")
 	resultMatrix = matrixMultiplier(A,AT)
+	print(resultMatrix)
 	finalVector = matrixMultiplier(AT, resultVector)
+	print(finalVector)
+	print(splitMatrix(gj.gauss_jordan(joinMatrixes(resultMatrix,finalVector))))
+
 	
 	
 

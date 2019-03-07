@@ -1,14 +1,8 @@
-#      --- Importando librerias ---      #
-import fpformat
-
-#      --- Se definen variables ---      #
 dimx = 0
 dimy = 0
 mini = 0
 
-#  --- Se definen funciones/metodos ---  #
 
-# Revision del dato ingresado (flotante)
 def error_test2(x):
     try:
         int(x)
@@ -16,7 +10,7 @@ def error_test2(x):
     except:
         return True
 
-# Revision del dato ingresado (entero)
+
 def error_test3(x):
     try:
         float(x)
@@ -28,16 +22,13 @@ def error_test3(x):
 def error_test(y, z=1):
     if z == 1:
         while error_test2(y):
-            print "\n\n\t\tERROR!!!\n\t\tSe han ingresado valores o caracteres no validos."
-            y = raw_input("\n\nPor favor, reingrese el valor deseado: ")
+            print("\n\n\t\tERROR!!!\n\t\tSe han ingresado valores o caracteres no validos.")
         return int(y)
     elif z == 2:
         while error_test3(y):
-            print "\n\n\t\tERROR!!!\n\t\tSe han ingresado valores o caracteres no validos."
-            y = raw_input("\n\nPor favor, reingrese el valor deseado: ")
+            print ("\n\n\t\tERROR!!!\n\t\tSe han ingresado valores o caracteres no validos.")
         return float(y)
 
-# Generado de la matriz
 def generador(y,x):
     mat = []
     for k in range(y):
@@ -48,19 +39,15 @@ def generador(y,x):
             mat[i].append(error_test(raw_input("a_" + str(i+1) + str(j+1) + " = "), 2))
     return mat
 
-# Despliega matriz
 def impri(m):
-    print "\n"
-    print "\t||" + ("\t" * (len(m[0]) + 1)) + "||"
+    print("\n")
+    print("\t||" + ("\t" * (len(m[0]) + 1)) + "||")
     for i in range(len(m)):
-        print "\t||\t",
-        for j in range(len(m[0])):
-            print fpformat.fix(m[i][j],2),"\t",
-        print "||"
-        print "\t||" + ("\t" * (len(m[0]) + 1)) + "||"
-    print "\n"
+        print("\t||\t"),
+        print("||")
+        print("\t||" + ("\t" * (len(m[0]) + 1)) + "||")
+    print("\n")
 
-# Escoger valor minimo
 def peque(a,b):
     if a > b:
         return b
@@ -69,36 +56,32 @@ def peque(a,b):
     else:
         return a
 
-# Sumador de listas
 def adic(l1, l2):
     ln = [0]*len(l1)
     for i in range(len(l1)):
         ln[i] = l1[i] + l2[i]
     return ln
 
-# Multiplicador por constante
 def multi(l1, k):
     ln = [0]*len(l1)
     for i in range(len(l1)):
         ln[i] = k * l1[i]
     return ln
 
-# Buscador y cambiador de filas
 def swap_finder(m, l, x):
     if l == (x-1):
-        print "La matriz es una matriz singular."
-        print "Eso implica que no se puede resolver.\n\n"
+        print("La matriz es una matriz singular.")
+        print("Eso implica que no se puede resolver.\n\n")
         return m, False
     else:
         for i in range(l, x):
             if m[i][l] != 0:
                 m[l], m[i] = m[i], m[l]
                 return m, True
-        print "La matriz es una matriz singular."
-        print "Eso implica que no se puede resolver.\n\n"
+        print("La matriz es una matriz singular.")
+        print("Eso implica que no se puede resolver.\n\n")
         return m, False
 
-# Sistema de resolucion Gauss-Jordan
 def solver(m,p):
     for i in range(p):
         boo = True
@@ -115,21 +98,10 @@ def solver(m,p):
             m[l] = adic(m[l], multi(m[k], -1*float(m[l][k])))
     return m
 
-#       --- Programa Principal ---       #
+def gauss_jordan(matrix):
+    columns = len(matrix[0])
+    rows = len(matrix)
 
-print "\n"*5
+    mini=peque(columns,rows)
+    return solver(matrix,mini)
 
-dimy = error_test(raw_input("Ingrese la cantidad de filas de la matriz: "), 1)
-dimx = error_test(raw_input("Ingrese la cantidad de columnas de la matriz: "), 1)
-
-matriz = generador(dimy, dimx)
-
-impri(matriz)
-
-mini = peque(dimx, dimy)
-
-solucion = solver(matriz, mini)
-
-print "\t\t*** Solucion ***"
-
-impri(matriz)
