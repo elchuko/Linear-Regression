@@ -69,7 +69,7 @@ def splitMatrix(matrix):
 
 	return resultVector
 
-def calculateRMSE(resultVector):
+def calculateRMSE(matrix,yVector,values):
 	pass
 	
 
@@ -80,7 +80,8 @@ if __name__ == "__main__":
 	resultMatrix = matrixMultiplier(A1,AT1)
 	finalVector = matrixMultiplier(AT1, resultVector)
 	values = splitMatrix(gj.gauss_jordan(joinMatrixes(resultMatrix,finalVector)))
-	print(values)
+	testMatrix, AT, resultVector = createMatrixes("airfoil_test_.csv")
+	
 
 
 	

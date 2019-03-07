@@ -24,14 +24,12 @@ def multi(l1, k):
 
 def swap_finder(m, l, x):
     if l == (x-1):
-        print("creo que no funciona")
         return m, False
     else:
         for i in range(l, x):
             if m[i][l] != 0:
                 m[l], m[i] = m[i], m[l]
                 return m, True
-        print("creo que tampoco funciona")
         return m, False
 
 def solver(m,p):
