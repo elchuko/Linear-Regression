@@ -1,4 +1,5 @@
 import csv
+import math
 import gauss_jordan as gj
 
 def createMatrixes(filename):
@@ -70,10 +71,20 @@ def splitMatrix(matrix):
 	return resultVector
 
 def calculateRMSE(matrix,yVector,values):
-	resultV = []
+	resultV = [values[0] for i in range(len(yVector))]
+	values.pop(0)
 	for height in range(len(matrix)):
 		for width in range(len(matrix[0])):
-			resultV[height] += matrix[height][width]*values[width]
+			print("resultV={} matrix={} values={}",resultV[height],matrix[height][width],values[width])
+			resultV[height] += float(matrix[height][width])*float(values[width])
+	
+	RMSE = float(0)
+	for i in range(len(resultV)):
+		RMSE += (float(resultV[i])-float(yVector[i]))**2
+
+	RMSE = math.sqrt(RMSE/len(resultV))
+	return RMSE
+
 	
 
 if __name__ == "__main__":
@@ -84,6 +95,7 @@ if __name__ == "__main__":
 	finalVector = matrixMultiplier(AT1, resultVector)
 	values = splitMatrix(gj.gauss_jordan(joinMatrixes(resultMatrix,finalVector)))
 	testMatrix, AT, resultVector = createMatrixes("airfoil_test_.csv")
+	print(calculateRMSE(testMatrix,resultVector,values))
 	
 
 
