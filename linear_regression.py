@@ -75,7 +75,7 @@ def calculateRMSE(matrix,yVector,values):
 	values.pop(0)
 	for height in range(len(matrix)):
 		for width in range(len(matrix[0])):
-			print("resultV={} matrix={} values={}",resultV[height],matrix[height][width],values[width])
+			#print("resultV={} matrix={} values={}",resultV[height],matrix[height][width],values[width])
 			resultV[height] += float(matrix[height][width])*float(values[width])
 	
 	RMSE = float(0)
@@ -95,7 +95,7 @@ if __name__ == "__main__":
 	finalVector = matrixMultiplier(AT1, resultVector)
 	values = splitMatrix(gj.gauss_jordan(joinMatrixes(resultMatrix,finalVector)))
 	testMatrix, AT, resultVector = createMatrixes("airfoil_test_.csv")
-	print(calculateRMSE(testMatrix,resultVector,values))
+	print("RMSE:",calculateRMSE(testMatrix,resultVector,values))
 	
 
 
